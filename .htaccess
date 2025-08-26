@@ -1,0 +1,23 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# 1. Set index.html as default homepage
+DirectoryIndex index.html
+
+# 2. Redirect index.html to root
+RewriteCond %{THE_REQUEST} /index\.html
+RewriteRule ^index\.html$ https://saturnedge.in/ [R=301,L]
+
+# 3. Redirect old Webflow URLs to new Hostinger pages
+Redirect 301 /privacy-policy https://saturnedge.in/privacy-policy.html
+Redirect 301 /Privacy%20policy https://saturnedge.in/privacy-policy.html
+Redirect 301 /privacy-policy-for-BoltVPN https://saturnedge.in/privacy-policy-for-BoltVPN.html
+Redirect 301 /privacy-policy-for-supernotes https://saturnedge.in/privacy-policy-for-supernotes.html
+Redirect 301 /about https://saturnedge.in/about-us
+
+# 4. Optional: Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.saturnedge\.in [NC]
+RewriteRule ^(.*)$ https://saturnedge.in/$1 [L,R=301]
+
+# 5. Custom 404 page
+ErrorDocument 404 /404.html
